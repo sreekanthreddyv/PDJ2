@@ -1,0 +1,12 @@
+# Documentation
+
+# Docstrings
+
+# Tests
+
+# Comments
+
+# One of the most valuable aspects of Django is its focus on application-based development.
+
+# DynamicClass = type('DynamicClass', (), {'spam':'Eggs'})
+
