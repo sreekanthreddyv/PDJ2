@@ -10,3 +10,70 @@
 
 # DynamicClass = type('DynamicClass', (), {'spam':'Eggs'})
 
+# built-in function to assist in the identification of callable objects. -> callable(object) -> bool
+
+# for key, value in kwargs.items():
+	setattr(self, key, value)
+
+•	 Required arguments
+•	 Optional arguments
+•	 Excess positional arguments
+•	 Excess keyword arguments
+
+	def complex_function(a, b=None, *args, **kwargs)
+
+# arguments may be known in advance, long before the function will be called. In these cases, a function can have one or more of its arguments applied beforehand so that the function can be called with fewer arguments
+
+	from functools import partial
+
+	def add(a, b):
+	    return a+b
+	    
+	plus3 = partial(add, 3)
+
+	plus3(4) >>> 7
+
+# import inspect; inspect.getargspec(fun_name) => ArgSpec(args=['a', 'b', 'c', 'd'], varargs='e', keywords='f', defaults=(True, False))
+
+# inspect.getdoc(func)
+
+# from django.utils.text import capfirst
+
+# from django.db.models.loading import cache
+
+	for app in cache.get_apps():
+		print(app.__name__)
+
+# clean(value, instance)—Validates the given value is appropriate for the model,
+
+# URLs are the primary entry points to your site
+
+# while views are the code that respond to incoming events. accepting a request and returning a response
+
+# Rather than supplying all your URL patterns in a single file, the include() function allows them to be split up among multiple files
+
+# from django.conf.urls import url, include
+
+	•	 A regular expression to match against the incoming URL being requested
+	•	 A reference to the view to be called
+	•	 A name to be used to reference the view during reverse lookups
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
