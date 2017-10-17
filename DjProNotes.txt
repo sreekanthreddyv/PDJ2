@@ -58,6 +58,107 @@
 	•	 A reference to the view to be called
 	•	 A name to be used to reference the view during reverse lookups
 
+# http_method_names:
+
+	•	 get
+	•	 post
+	•	 put
+	•	 delete
+	•	 head
+	•	 options
+	•	 trace
+
+# forms.py
+
+	from django import forms
+	from .models import Post
+
+	class PostForm(forms.ModelForm):
+		class Meta:
+			model = Post
+			fields = ('title', 'text')
+
+# views.py
+
+	def post_new(request):
+		form = PostForm(request.POST)
+		if request.method == 'POST':
+			if form.is_valid():
+				post = form.save(commit=False)
+				post.author = request.user
+				post.published_date = timezone.now()
+				post.save()
+				return redirect('post_detail', pk=post.pk)
+		else:
+			form = PostForm
+		return render(request, 'post_edit.html', {'form': form})
+
+# file.html
+	
+	<form method="POST" class="XXX">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit" class="save">Save</button>
+	</form>
+
+# from django.core.mail import EmailMessage
+
+# 	books = Book.objects.filter(..)
+	if books:
+	  do_stuff_with_books(books)
+
+#  If you aren't using the queryset use exist
+	books = Book.objects.filter(..)
+	if books.exists():
+	  do_some_stuff()
+
+# SubProcess
+	
+	import os
+	stream = os.popen('echo $HOME')
+	stream.read()
+
+# from django.contrib.auth.decorators import login_required
+
+# process.communicate() can reads input and output from the process
+
+# The basic details of what the template syntax looks like and the included tags and filters are well described elsewhere.
+
+# {% Template Tags %}
+
+# Django Template Tags are simple Python functions that accept a value, an optional argument, and return a value to be displayed on the page.
+
+	from django import template
+
+	register = template.Library()
+
+# register = template.Library(): This refers that you need to make sure, your templates are added to the existing library of tags and filters
+
+	@register.assignment_tag
+	def get_result_tag(arg1, arg2, arg3):
+		"""
+			asfj
+		"""
+		return "response"
+
+# Example.html
+	{% load app_tags %}
+	{% get_result_tag arg1 arg2 arg3 as result %}
+
+• simple_tag: Processes the data and returns a string
+• inclusion_tag: Processes the data and returns a rendered template
+• assignment_tag: Processes the data and sets a variable in the context
+
+# If you want to register it with a different name, you can do it by specifying a name attribute like @register.simple_tag(name='my_tag')
+
+
+
+
+
+
+
+
+
 
 
 
