@@ -149,11 +149,43 @@
 • inclusion_tag: Processes the data and returns a rendered template
 • assignment_tag: Processes the data and sets a variable in the context
 
-# If you want to register it with a different name, you can do it by specifying a name attribute like @register.simple_tag(name='my_tag')
+# Django will use the function's name as the tag name. If you want to register it with a different name, you can do it by specifying a name attribute like @register.simple_tag(name='my_tag')
 
+# urlize => Converts URLs and email addresses in text into clickable links.
 
+# It’s possible to store the tag results in a template variable rather than directly outputting it.
 
+	{% current_time "%Y-%m-%d %I:%M %p" as the_time %}
+	<p>The time is {{ the_time }}.</p>
 
+# comment the code in HTML template
+
+	{% comment "Optional Note" %}
+		<p>Reason for disabling the code</p>
+	{% endcomment %}
+
+# cycle
+	# Produces one of its arguments each time this tag is encountered.
+
+		{% for o in some_list %}
+			<tr class="{% cycle 'row1' 'row2' %}">
+				...
+			</tr>
+		{% endfor %}
+
+# for … empty, forloop.counter, 
+
+# We can also use filters the "if" condition
+
+	{% if messages|length >= 100 %}
+	   You have lots of messages today!
+	{% endif %}
+
+# ifequal and ifnotequal
+
+# It is {% now "jS F Y H:i" %}
+
+#  DATE_FORMAT, DATETIME_FORMAT, SHORT_DATE_FORMAT or SHORT_DATETIME_FORMAT
 
 
 
