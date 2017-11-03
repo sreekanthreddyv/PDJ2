@@ -1,0 +1,43 @@
+Software testing, in theory, is a fairly straightforward activity. For every input, there should be a defined and known output. We enter values, make selections, or navigate an application and compare the actual result with the expected one. If they match, we nod and move on. If they don’t, we possibly have a bug.
+
+
+Freq_dist_nltk = nltk.FreqDist(token)
+
+Freq_dist_nltk.plot(76, cumulative=False)
+
+
+preprocessing steps like tokenization, stemming, lemmatization, and stop word removal in more detail.
+
+have a machine readable and formatted text from raw data. The process involves data munging, text cleansing, specific preprocessing, tokenization, stemming or lemmatization and stop word removal.
+
+data_source		Python_Parser
+-----------		-------------
+CSV				import csv
+HTML			HTMLparser, SAXParser, DOM Parser
+XML				XMLParser
+Database		pyodbc
+JSON			json
+PDF				PDFMiner
+NoSQL
+
+from nltk.tokenize import regexp_tokenize, wordpunct_tokenize, blankline_tokenize
+regexp_tokenize(s, pattern='\w+')
+
+A basic rule-based stemmer, like removing –s/es or -ing or -ed can give you a precision of more than 70
+percent, while Porter stemmer also uses more rules and can achieve very good accuracies.
+
+from nltk.stem import PorterStemmer # import the Porter stemmer
+from nltk.stem.lancaster import LancasterStemmer
+from nltk.stem.snowball import SnowballStemmer
+
+pst = PorterStemmer()
+lst = LancasterStemmer()
+
+print(lst.stem("running"))
+print(pst.stem("shopping"))
+
+Lemmatization is a more methodical way of converting all the grammatical/inflected forms of the root
+of the word. Lemmatization uses context and part of speech to determine the inflected form of the word
+and applies different normalization rules for each part of speech to get the root word (lemma):
+
+The ne_chunking method recognizes people (names), places (location), and organizations.

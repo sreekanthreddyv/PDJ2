@@ -1,0 +1,6 @@
+# from selenium import webdriver
+
+# driver = webdriver.Firefox()
+
+# The browser object provides a programmable interface to communicate with the browser using the Selenium commands.
+

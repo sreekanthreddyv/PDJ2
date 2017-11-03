@@ -1,0 +1,335 @@
+filename:file1.txt
+filename:file2.txt
+ajsjfjfsfj
+hackfilename:file2.txt
+hell
+
+sudo useradd git
+sudo passwd git >> git19181
+
+ssh-keygen -t rsa
+
+>> hack_git.txt >> git1918
+
+
+# greatest absolute value - distance from zero - that would be -20 here
+
+# max repeated times
+		
+		max(a, key=a.count)
+
+# max(a, key=int), a = ['2', '7', '30', '40', '9']
+
+# from operator import itemgetter
+
+# print(sorted(student, key=itemgetter('gpa')))
+
+# student_rows = [ ("Joe Smith", "physics", 3.7), ("Jane Jones", "chemistry", 3.8), ("Zoe Fox", "literature", 3.4),]
+
+# print(sorted(student_rows, key=itemgetter(2)))
+
+# sorted(student_objs, key=attrgetter("gpa"))
+
+# For Python 2, it’s an error to define a function with any regular arguments after *args.
+
+# A decorator works by adding behavior around a function - meaning, lines of code which are executed before that function begins, after it returns, or both. It does not alter any lines of code inside the function
+
+# Any object can implement - __call__ to make it callable - meaning, the object can be called like a function.
+
+# class CountCalls:
+
+	def __init__(self, func):
+		self.func = func
+		self.count = 1
+
+	def __call__(self, *args, **kwargs):
+		print('# of calls: {}'.format(self.count))
+		self.count += 1
+		return self.func(*args, **kwargs)
+
+@CountCalls
+def foo(x):
+	return x + 2
+
+# Notice this also lets us access foo.count, if we want to check the count outside of the decorated function. The function version didn’t let us do this.
+
+def autorepr(klass):
+	def klass_repr(self):
+		return '{}()'.format(klass.__name__)
+	klass.__repr__ = klass_repr
+	return klass
+
+@autorepr
+class Penny:
+	value = 1
+
+penny = Penny()
+repr(penny) >>> 'Penny()'
+
+# from functools import wraps
+
+def ha(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        print("Calling: {}".format(func.__name__))
+        return func(*args, **kwargs)
+    return wrapper
+    
+def ha2(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        print("Calling: {}".format(func.__name__))
+        return func(*args, **kwargs)
+    return wrapper
+    
+
+@ha
+@ha2
+def hey(a):
+    return a**2
+
+print(hey(3))
+
+# In an except block, you can re-raise the current exception. It’s very simple; just write raise by itself, with no arguments:
+
+try:
+	do_something()
+except ExceptionClass:
+	handle_exception()
+	raise
+
+# Classes and Objects beyond basics
+
+class Person:
+    def __init__(self, first_name, last_name):
+        self.first_name = first_name
+        self.last_name = last_name
+        
+    @property
+    def fullname(self):
+        return self.first_name + " "+self.last_name
+        
+    @fullname.setter
+    def fullname(self, value):
+        self.first_name, self.last_name = value.split(" ",1)
+        
+        
+h = Person("hacker", "online")
+print(h.fullname)
+h.fullname = "Welcome to hell"
+
+print(h.fullname)
+
+# The @property def fullname must come first.
+
+# That creates the property to begin with, and also creates the getter. By "create the property", I mean that an object named   fullname exists in the namespace of the class, and it has a method named fullname.setter. This fullname.setter is a decorator that is applied to the next def fullname, christening it as the setter for the fullname property.
+
+# prefixing a member variable by a single underscore signals the variable is non-public, i.e. it should only be accessed internally, inside methods of that class, or its subclasses. [1] What this pattern says is "you can access this variable, but not change it".
+
+# some little about pandas
+
+		import pandas
+
+		df = pandas.DataFrame({
+			'A':[-137, 22, -3, 4, 5],
+		    'B': [10, 11, 121, 13, 14],
+		    'C': [3, 6, 91, 12, 15],
+		})
+
+ 		postive_a = df[ df > 0]
+
+# Test Driven Development (TDD)
+
+# Maninly used things -> assertEqual, assertTrue, assertFalse, assertIs, assertIsNone, assertIn, assertIsInstance
+
+# assertDictEqual, assertListEqual
+
+# "setUp" is executed just before each test method starts.
+
+# "tearDown" is run just after. This is repeated for every single test method
+
+# The generic term for this kind of pre-test preparation is called a "test fixture". A test fixture is whatever needs to be done before a test can properly run.
+
+# For errors in setUp, this means none of that test’s assertions will run (though it’s still marked as failing). For tearDown, the test is marked as failing, even if all the individual assertions passed.
+
+# Sometimes your code is supposed to raise an exception, under certain exceptional conditions. If that condition occurs, and your code does not raise the correct exception, that’s a bug. How do you write test code for this situation?
+
+# You can verify that behavior with a special method of TestCase, called "assertRaises". It’s used in a "with" statement in your test;
+
+		class TestRoman(unittest.TestCase):
+			def test_roman2int_error(self):
+				with self.assertRaises(ValueError):
+					roman2int("This is not a valid roman numeral.")
+
+# subTest
+
+		for text in texts:
+			with self.subTest(text=text):
+				self.assertEqual(2, numwords(text))
+
+***** String Formatting *****
+
+		point = Point(5, 7)
+
+		b = "Co-ordinates are {0.x}, {0.y}".format(point)
+
+# {:d} for integer, {:f} for floating point numbers.
+
+# The part after after the colon is called a format spec.
+
+		"Billions and {:,d}'s".format(10**9)
+		"Billions and 1,000,000,000's"
+
+		d = "Billions and {:E}".format(10**10)
+
+		f = "foo {:7d} bar".format(753) # filled the gap with spaces
+
+# It will default to right-justifying for any kind of number
+
+# To justify to the left, we can specify with left-justifying with <!-- '<' symbol -->
+
+# We can center it with "^" symbol
+
+# We can fill the gap with any other 
+
+		f = "foo{:_>7d}bar".format(753)
+
+# with format-string (f"") 3.6 or later
+		
+		a=10**9
+		e = f"Billions: {a:,d}"
+
+****** LOGGING ******
+
+		import logging
+		logging.warning("Look Out!") >>> WARNING:root:Look Out!
+		logging.error("Check it!") >>> ERROR:root:Check it!
+
+# debug
+	Detailed information, typically of interest only when diagnosing problems.
+
+# info
+	Confirmation that things are working as expected.
+
+# warning
+	An indication that something unexpected happened, or indicative of some problem in the near future (e.g. â€ ̃disk space lowâ€TM). The software is still working as expected.
+
+# error
+	Due to a more serious problem, the software has not been able to perform some function.
+
+# critical
+	A serious error, indicating that the program itself may be unable to continue running.
+
+# The default logging threshold is logging.WARNING, which means only messages of that severity or greater are actually generated;
+
+# Change the log level threshold using the basicConfig function
+
+		$ logging.basicConfig(level = logging.INFO)
+
+# filename
+	Write log messages to the given file, rather than stderr.
+
+# filemode
+	Set to "a" to append to the log file (the default), or "w" to overwrite.
+
+# format
+	The format of log records.
+
+# level
+	The log level threshold, described above.
+
+# WARNING:root:Collision imminent
+
+	WARNING -> log level name
+	root -> name of the underlying logger object. "basicConfig" uses a logger called "root";
+	msg -> Actual log message
+
+# logging.basicConfig( format="Log level: %(levelname)s, msg: %(message)s")
+
+Attribute	Format			Description
+---------	-----			-----------
+asctime 	%(asctime)s 	Human-readable date/time
+funcName 	%(funcName)s 	Name of function containing the logging call
+lineno 		%(lineno)d 		The line number of the logging call
+message 	%(message)s 	The log message
+pathname 	%(pathname)s 	Full pathname of the source file of the logging call
+levelname 	%(levelname)s 	Text logging level for the message ('DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL')
+name 		%(name)s 		The logger’s name
+
+		fruit_info = {"count": 14, "name": "oranges"}
+
+		logging.info("We ate %(count)d of your %(name)s. Thanks!",fruit_info)
+
+# logger = logging.getLogger()
+# logger.name >>> 'root'
+
+****** Log Destinations: Handlers and Streams ******
+
+		import logging
+		logger = logging.getLogger()
+		logger.setLevel(logging.DEBUG)
+		log_file_handler = logging.FileHandler("logs.txt")
+		logger.addHandler(log_file_handler)
+
+		logger.debug("A little information")
+		logger.error("Boo!")
+
+# WatchedFileHandler and RotatingFileHandler, for logging to rotated log files
+
+▪ SocketHandler and DatagramHandler for logging over network sockets
+
+▪ HTTPHandler for logging over an HTTP REST interface
+
+▪ QueueHandler and QueueListener for queuing log records across thread and process boundaries
+
+# Procedure to create formatter
+
+		import logging
+		my_handler = logging.StreamHandler()
+		fmt = logging.Formatter("My message is: %(message)s")
+		my_handler.setFormatter(fmt)
+		my_logger = logging.getLogger()
+		my_logger.addHandler(my_handler)
+		my_logger.warning("WAKE UP!!")
+
+# Sample Program
+  ------ -------
+
+	import logging
+
+	logger = logging.getLogger('simple_example')
+	logger.setLevel(logging.DEBUG)
+
+	# create file handler that logs debug and higher level messages
+	fh = logging.FileHandler('spam.log')
+	fh.setLevel(logging.DEBUG)
+
+	# create console handler with a higher log level
+	ch = logging.StreamHandler()
+	ch.setLevel(logging.ERROR)
+
+	# create formatter and add it to the handlers
+	formatter = logging.Formatter(
+	    '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+	ch.setFormatter(formatter)
+	fh.setFormatter(formatter)
+
+	# add the handlers to logger
+	logger.addHandler(ch)
+	logger.addHandler(fh)
+
+	# 'application' code
+	logger.debug('debug message')
+	logger.info('info message')
+	logger.warn('warn message')
+	logger.error('error message')
+	logger.critical('critical message')
+
+# get all modules and __all__
+
+	import os, glob
+
+	modules = glob.glob(os.path.join(os.path.diranme(__file__), "*.py"))
+	__all__ = [os.path.basename(f)[:-3] for f in modules if nor f.endswith("__init__.py")]
+
+	

@@ -1,0 +1,203 @@
+To use splinter
+
+>>> from splinter import Browser
+>>> browser = Browser()
+
+or 
+
+you can use by context manager, through with statement
+
+with Browser() as browser:
+	# stuff using browser
+
+The "context manager" will create a new window and close it when the cursor reaches the code outside the "with" statement, automatically.
+
+# splinter supports three drivers: chrome, firefox, zopetestbrowser
+
+>>> browser = Browser("chrome")
+>>> browser = Browser("firefox")
+>>> browser = Browser("zope.testbrowser")
+
+*** Navigating with Browser ***
+
+>>> browser.visit(URL)
+# visit method takes only a single parameter - the url to be visited
+
+# You can manage multiple windows (such as popups through windows object)
+
+# browser.windows              # all open # windows
+# browser.windows[0]           # the first window
+# browser.windows[window_name] # the window_name window
+# browser.windows.current      # the current window
+# browser.windows.current = browser.windows[3]  # set current window to window 3
+
+# window = browser.windows[0]
+# window.is_current            # boolean - whether window is current active window
+# window.is_current = True     # set this window to be current window
+# window.next                  # the next window
+# window.prev                  # the previous window
+# window.close()               # close this window
+# window.close_others()        # close all windows except this one
+
+
+** Reload **
+>>> browser.reload()
+>>> browser.back()
+>>> browser.forward()
+>>> browser.(html, title, url)
+
+
+** Splinter provides 6 methods for finding elements in the page **
+
+>>> browser.find_by_(css, xpath, tag, id, value, test)
+
+>>> browser.find_by_css('h1')
+>>> browser.find_by_xpath('//h1')
+>>> browser.find_by_tag('h1')
+>>> browser.find_by_name('name')
+>>> browser.find_by_text('Hello World!')
+>>> browser.find_by_id('firstheader')
+>>> browser.find_by_value('query')
+
+Each of these methods returns a list with the found elements. You can get the first found element with the "first" shortcut:
+
+>>> first_found = browser.find_by_name("name").first (last)
+
+
+** Finding Links **
+
+# find_link_by_text, find_link_by_partial_text, find_link_by_href, find_link_by_partial_href
+
+
+** Chaining find of elements **
+
+>>> divs = browser.find_by_tag("div")
+>>> within_elements = divs.first.find_by_name("name")
+
+
+** Mouse Interactions **
+
+>>> browser.find_by_css('.menu-links').mouse_over()
+
+>>> browser.find_by_css('.menu-links').mouse_out()
+
+# puts the mouse above element.
+>>> browser.find_by_tag('h1').mouse_out()
+
+
+# click
+>>> browser.find_by_tag('h1').click()
+
+# double_click
+>>> browser.find_by_tag('h1').double_click()
+
+# right_click
+>>> browser.find_by_tag('h1').right_click()
+
+
+
+*** Interacting with elements in the page ***
+
+# Get value of an element
+>>> browser.find_by_css('h1').first.value
+	or
+>>> element = browser.find_by_css('h1').first
+>>> element.value
+
+# clicking links
+>>> browser.click_link_by_href("http://www.the_site.com/my_link")
+
+	>>> browser.click_link_by_partial_href
+	>>> browser.click_link_by_text
+	>>> browser.clcik_link_by_partial_text
+	>>> browser.click_link_by_id('link_id')
+
+# clicking buttons
+>>> browser.find_by_name('send').first.click()
+>>> browser.find_link_by_text ('mylink').first.click()
+
+# Interacting with forms
+>>> browser.fill('query', 'my_name')
+>>> browser.attach_file('file', '/path/to/file/hack.jpg')
+>>> browser.choose('some-radio', 'radio-value')
+>>> browser.check('some-check')
+>>> browser.uncheck('some-check')
+>>> browser.select('uf', 'r')
+
+# To tigger JavaScript events, like KeyDown or up
+>>> browser.type('type', 'typing-text')
+
+# if you pass the argument "slowly=True" to the type method you can interact with the page on every key pressed. 
+
+>>> for key in browser.type('type', 'typing slowly', slowly=True):
+>>> 	pass
+
+# you can also use "type" and "fill" methods in an element
+>>> browser.find_by_name('name').type('Seve Jobs', slowly=True)
+>>> browser.find_by_css('.city').fill('San Francisco')
+
+# Veryfying if element is 'visible' or 'invisible'
+>>> browser.find_by_css('h1').first.visible
+> It will be True if the element is visible or False
+
+# Verytying if element has a className
+# use "has_class" method
+
+>>> browser.find_by_css('.content').first.has_class('content')
+
+# Interacting with elements through a ElementList object
+
+>>> browser.find_by_css('a.my-website').first.click()
+
+>>> assert browser.find_by_css('a.banner').first.visible
+>>> assert browser.find_by_css('a.banner').visible
+
+
+# Matchers
+>>> browser.is_text_present("hacker") # True
+>>> browser.is_text_present("hacker", wait_time=10)
+>>> browser.is_text_not_present('text not present') # True
+
+# Checking the presence of elements
+	""" css, xpath, tag, name, id, value, text """
+
+>>> browser.is_element_present_by_css("h1")
+>>> browser.is_element_not_present_by_text('Not here :(')
+
+
+*** Cookie Manipulation ***
+
+# Create a cookie
+>>> browser.cookies.add({"whatever": "and ever"})
+
+# Retrive all cookies
+>>> browser.cookies.all()
+
+# Delete a cookie
+>>> browser.cookies.delete("fjkajfkj")
+>>> browser.cookies.delete("whatever":"wherever")
+
+# Delete all cookies
+>>> browser.cookies.delete()
+
+
+*** Executing javascript ***
+>>> browser.execute_script("$('body').empty()")
+
+# You can return the result of script
+>>> browser.evaluate_script("4+4") == 8
+
+
+*** Dealing with HTTP status code and exceptions ***
+
+>>> browser.visit("http://hellohacker.com")
+>>> browser.status_code.is_success() # True
+>>> browser.status_code == 200 # True
+>>> browser.status_code.code # 200
+
+try:
+    browser.visit('http://cobrateam.info/i-want-cookies')
+except HttpResponseError, e:
+    print "Oops, I failed with the status code %s and reason %s" % (e.status_code, e.reason)
+
+

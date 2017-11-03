@@ -1,0 +1,44 @@
+re.match() -> Only at beginning of the string
+re.search() -> upto first occurance
+re.findall() -> To get a list of all matching patterns
+re.split(pattern, string, maxsplit=2)
+re.sub(pattern, repl, string) -> To search a pattern and replace with a new sub string
+re.compile(pattern, repl, string) -> Combine a re expression pattern into pattern objects. Which can be used for pattern matching. It also helps to search a pattern again without rewriting it.
+
+
+By defining an expression with the help of pattern operators.
+
+strg = "AV is largest Analytics community of India"
+
+Extract Each word(using "*" or "+") 
+
+re.findall(r'\w*', strg) -> ['Av', ' ', 'is',.....] -> including spaces
+re.findall(r'\w+', strg) -> ['AV', 'is', 'largest', ......]
+
+re.findall(r'^\w+', strg) -> ['AV'] -> the word in the beginning
+re.findall(r'\w+$', strg) -> ['India'] -> the word from the end of string
+
+re.findall(r'\b\w', strg) -> consecutive two characters available at word boundary
+
+email = "abc.test@gmail.com, xyz@test.in, test.first@analyticsvidhya.com, first.test@rest.biz"
+
+re.findall(r'@\w+', email) -> all char after "@" -> ['@gamil', '@test']
+
+-> to get ".com" too apply below code
+re.findall(r'@\w+.\w+', email) -> ['@gmail.com', '@test.in', .....]
+
+re.findall(r'@\w.(\w+)', email) -> only domain info -> ['com', 'in', ....]
+
+date = "Amit 34-3456 12-05-2007, XYZ 56-4532 11-11-2011, ABC 67-8945 12-01-2009"
+re.findall(r'\d{2}-\d{2}-\d{4}', date) -> Extract Date
+re.findall(r'\d{2}-\d{2}-(\d{4})', date) -> Extract only year from date
+
+re.findall(r'\b[aeiouAEIOU]\w+', strg) -> start with vowels -> ['AV', 'is', 'Analytics', ....]
+
+re.findall(r'\b[^aeiouAEIOU ]\w+', strg) -> start with vowels -> ['largest', 'community']
+
+-> Split string using multiple delimiters
+
+strg2 = 'asdf fjdk;afed,fjek,asdf,foo' # String has multiple delimiters (";",","," ")
+
+re.split(r'[;, \s], strg2)

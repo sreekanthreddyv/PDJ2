@@ -1,0 +1,48 @@
+# A generator is a function that produces a sequence of results instead of a single value.
+
+# Instead of a returning a value, you generate a series of values (using 'yield' statement)
+
+# Calling a generator function creates an generator object. However it doesn't start running the function.
+
+# The function only executes on 'next()'
+
+# There are two types of generators.
+	# generator expressions
+	# generator functions.
+
+# A generator expression looks similar to a list comprehension but the simple difference is that it uses parenthesis over square brackets.
+
+# A generator function is a function which contains the keyword yield;
+
+		def even_filter(nums):
+			for num in nums:
+				if num % 2 == 0:
+				    yield num
+		def multiply_by_three(nums):
+			for num in nums:
+				yield num * 3
+		def convert_to_string(nums):
+			for num in nums:
+				yield 'The Number: %s' % num
+
+		nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+		pipeline = convert_to_string(multiply_by_three(even_filter(nums)))
+		for num in pipeline:
+			print num
+
+# line = (yield)
+
+# whatever value we send to coroutine is captured and returned by (yield) expression. A value can be send to the coroutine by send() method.
+
+# Execution of coroutine is similar to the generator. When we call coroutine nothing happens, it runs only in response to the next() and send() method.
+
+# Coroutine might run indefinitely, to close coroutine close() method is used. When coroutine is closed it generates GeneratorExit exception which can be catched in usual way.
+
+# After closing coroutine, if we try to send values, it will raise StopIteration exception.
+
+
+
+
+
+
+

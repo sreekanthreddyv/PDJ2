@@ -1,0 +1,105 @@
+# A web service is a collection of open protocols and standards used for exchanging data between applications or systems.
+
+# “ModelSerializers”. They are DRF’s way of converting from Django database models to JSON
+
+# from rest_framework import routers, serializers, viewsets
+
+# A router is DRF’s way of building URL configuration automatically, and mapping them to the functionality provided by the ViewSet.
+
+***** rebase & merge *****
+
+# Both of these commands are designed to integrate changes from one branch into another branch
+
+# The major benefit of rebasing is that you get a much cleaner project history.
+
+# rebasing also results in a perfectly linear project history
+
+# The purpose of any version control system is to record changes to your code.
+
+# git shortlog -> It groups each commit by author and displays the first line of each commit message.
+
+# git log -<n> 
+
+# git log --after="yesterday" (--before) (--since) (--until)
+
+# git log --author="John"
+
+# To show the history related to a file.
+
+	# git log -- foo.py bar.py
+
+# git log -S"<string>"
+
+# git log -G"<regex>"
+
+# By Range -> git log <since>..<until>
+
+# git log master..feature
+
+# The master..feature range contains all of the commits that are in the feature branch, but aren’t in the master branch.
+
+# Git hooks are scripts that run automatically every time a particular event occurs in a Git repository. 
+
+
+********************** CRONTAB ***********************
+
+# Linux Crontab format
+	
+	# MIN- Minute field - 0 to 59
+
+	# HOUR - Hour Field - 0 to 23
+
+	# DOM - Day of Month - 1 to 31
+
+	# MON - Month Field - 1 to 12
+
+	# DOW - Day of the week - 0 to 6
+
+	# CMD - Command Field
+
+# View crontab jobs
+	$crontab -l
+
+# Edit crontab job for other users
+	$crontab -u hacker -e
+
+# Every 10 minutes
+	# */10 * * * cmd
+
+# @yearly, @daily, @hourly, @reboot
+
+# Installing crontab fron cron file
+
+	$ cat cron-file.txt
+
+	$ crontab cron-file.txt
+
+# So you decide to take a look at the changes:
+
+	$ git mergetool
+
+# Oh me, oh my, upstream changed some things, but just to use my changes...no...their changes...
+
+	$ git checkout --ours filename.c
+	$ git checkout --theirs filename.c
+	$ git add filename.c
+	$ git commit -m "using theirs"
+
+# And then we try a final time
+
+	$ git pull origin master
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

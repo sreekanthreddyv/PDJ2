@@ -1,0 +1,206 @@
+# Machine learning is the design and study of software artifacts that use past experience to inform future decisions; machine learning is the study of programs that learn from data.
+
+# In supervised learning problems, a program predicts an output for an input by learning from pairs of labeled inputs and outputs.
+
+# That is, the program learns from examples of the "right answers".
+
+# In unsupervised learning, a program does not learn from labeled data. Instead, it attempts to discover patterns in data.
+
+# semi-supervised learning problems, make use of both supervised and unsupervised data;
+
+# The collection of examples that comprise supervised experience is called a "training set".
+
+# A collection of examples that is used to assess the performance of a program is called a "test set".
+
+# Two of the most common supervised machine learning tasks are classification and regression.
+
+# A common unsupervised learning task is to discover groups of related observations, called clusters, within the dataset.
+
+# This task, called clustering or cluster analysis, assigns observations into groups such that observations within a groups are more similar to each other based on some similarity measure than they are to observations in other groups.
+
+# Dimensionality reduction is another task that is commonly accomplished using unsupervised learning.
+
+# Dimensionality reduction is the process of discovering the features that account for the greatest changes in the response variable.
+
+# Dimensionality reduction can also be used to visualize data.
+
+# A training set is a collection of observations.
+
+# The test set is used to evaluate the performance of the model using some performance metric. It is important that no observations from the training set are included in the test set.
+
+# Memorizing the training set is called overfitting.
+
+# It is common to allocate between fifty and seventy-five percent of the data to the training set, ten to twenty-five percent of the data to the test set, and the remainder to the validation set.
+
+# Cross-validation provides a more accurate estimate of the model's performance than testing a single partition of the data.
+
+# There are two fundamental causes of prediction error: a model's bias, and its variance.
+
+# Accuracy is calculated with the following formula, where TP is the number of true positives, TN is the number of true negatives, FP is the number of false positives, and FN is the number of false negatives:
+
+			ACC = (TP + TN)/(TP + TN + FN + FP)
+
+# Precision is the fraction of the tumors that were predicted to be malignant that are actually malignant. Precision is calculated with the following formula:
+
+			P = TP / (TP + FP)
+
+# Recall is the fraction of malignant tumors that the system identified.
+
+			R = TP / (TP + FN)
+
+# scikit-learn provides algorithms for machine learning tasks including classification, regression, dimensionality reduction, and clustering. It also provides modules for pre-processing data, extracting features, optimizing hyperparameters, and evaluating models.
+
+# Simple linear regression models the relationship between one response variable and one feature of an explanatory variable.
+
+# In scikit-learn, all estimators implement the fit methods and predict .
+
+		from sklearn.linear_model import LinearRegression
+		model = LinearRegression()
+		model.fit(X, y)
+		predictions = model.predict(Z)
+
+# 		Y = α + βx
+
+# The intercept term 'α' and the coefficient 'β' are parameters of the model that are learned by the learning algorithm.
+
+# Using training data to learn the values of the parameters for simple linear regression that produce the best fitting model is called ordinary least squares (OLS) or linear least squares.
+
+# A cost function, also called a loss function, is used to define and measure the error of a model.
+
+# The differences between the prices predicted by the model and the observed prices of the pizzas in the training set are called residuals, or training errors.
+
+# The differences between the predicted and observed values in the test data are called prediction errors, or test errors.
+
+# This measure of the model's fitness is called the "residual sum of squares" (RSS) cost function.
+
+# Equation y = α + βx and that our goal is to solve for the values of β and α to minimize the cost function. We will solve for β first. To do so, we will calculate the variance of x and the covariance of x and y.
+
+# Variance is a measure of how far a set of values are spread out.
+
+		x_bar = X.mean()
+		variance = ((X - x_bar)**2).sum() / (X.shape[0] - 1)
+
+# NumPy also provides the method 'var' for calculating variance. The keyword parameter 'ddof' can be used to set Bessel's correction to calculate the sample variance:
+
+# Covariance is a measure of how much two variables change together. If the variables increase together, their covariance is positive. If one variable tends to increase while the other decreases, their covariance is negative.
+
+		variance = np.var(X, ddof=1)
+		covariance = np.cov(X.transpose(), y)[0][1]
+
+		β = cov(x, y) / var(x, y)
+
+		α = y - βx
+
+# y is mean of Y, x is mean of X, (x,y) are coordinates of the centroid, a point that the model must pass through.
+
+# Several measures can be used to assess our model's predictive capability.
+
+# R-squared measures how close the data are to a regression line.
+
+		model = LinearRegression()
+		model.fit(X_train, y_train)
+		r_squared = model.score(X_test, y_test)
+
+# simple linear regression, prediction consists only of multiplying the learned coefficient by the feature, and adding the learned intercept parameter.
+
+###### KNN ******
+
+# k-Nearest Neighbors (KNN), a simple algorithm that can be used for classification and regression tasks.
+
+# KNN is a non-parametric model. A parametric model uses a fixed number of parameters, or coefficients, to define the model that summarizes the data.
+
+# Non-parametric models can be useful when training data is abundant and you have little prior knowledge about the relationship between the response and explanatory variables.
+
+# KNN makes only one assumption: instances that are near each other are likely to have similar values of the response variable.
+
+# Assume that you must use a person's height and weight to predict his or her sex. This problem is called binary classification because the response variable can take one of two labels.
+
+# Binarizing ang Nearest Neighbors
+
+		from sklearn.preprocessing import LabelBinarizer
+		lb = LabelBinarizer()
+
+		y = np.array(['a', 'b', 'a', 'a', 'b', 'b'])
+		lb.fit_transform(y) >>> array([0, 1, 0, 0, 1, 1])
+
+		z_train = np.array(['male', 'female', 'male', 'male', 'female', 'female'])
+		lb.fit_transform(z_train) >>> array([0, 1, 0, 0, 1, 1])
+
+		z = lb.transform(y)
+		lb.inverse_transform(z) == y
+
+# A transformer should be fit only on the training set.
+
+# KNeighborsClassifier
+
+		from sklearn.neighbors import KNeighborsClassifier
+
+		clf = KNeighborsClassifier()
+		clf.predict(X_test) >>> Predictions_binarized output will come, to get noraml run lb.inverse_transform() on result
+
+# accuracy_score, f1_score, precision_score, recall_score, matthews_corrcoef
+
+		from sklearn.metrics import (above)
+		above(Y_test_binarized, predictions_binarizeda)
+
+# KNN for regression
+
+		from sklearn.neighbors import KNeighborsRegressor
+		from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+
+		k = 3
+		clf = KNeighborsRegressor(n_neighbors = k)
+		clf.fit(X_train, y_test)
+		clf.predict(X_test)
+
+# StandardScaler
+		
+		from sklearn.preprocessing import StandardScaler
+
+		ss = StandardScaler()
+		X_train_scaled = ss.fit_transform(X_train)
+
+
+****** Extracting features from categorical variables ******
+
+# from sklearn.preprocessing import scale
+
+****** The bag-of-words model ******
+
+# A collection of documents called "Corpus".
+
+# The number of elements that comprise a feature vector is called the vector's dimension.
+
+# Each element in the feature vector is a binary value that represents whether or not the corresponding word appeared in the document.
+
+		from sklearn.feature_extraction.text import CountVectorizer
+
+		vectorizer = CountVectorizer()
+		vectorizer.fit_transform(corpus).todense()
+		vec2 = CountVectorizer(stop_words = 'english')
+		vec2.fit_transform(corpus).todense()
+
+# Two similar strategies for further reducing dimensionality are called stemming and lemmatization.
+
+# Lemamtizing
+
+		from nltk.stem.wordnet import WordNetLemmatizer
+		lemmatizer = WordNetLemmatizer()
+		print(lemmatizer.lemmatize('gathering', 'v'))
+
+# Stemming
+
+		from nltk.stem import PorterStemmer
+		stemmer = PorterStemmer()
+		print(stemmer.stem('gathering'))
+
+
+
+
+
+
+
+
+
+
+

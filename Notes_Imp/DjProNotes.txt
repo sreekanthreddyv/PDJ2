@@ -126,6 +126,10 @@
 
 # {% Template Tags %}
 
+• simple_tag: Processes the data and returns a string
+• inclusion_tag: Processes the data and returns a rendered template
+• assignment_tag: Processes the data and sets a variable in the context
+
 # Django Template Tags are simple Python functions that accept a value, an optional argument, and return a value to be displayed on the page.
 
 	from django import template
@@ -144,10 +148,6 @@
 # Example.html
 	{% load app_tags %}
 	{% get_result_tag arg1 arg2 arg3 as result %}
-
-• simple_tag: Processes the data and returns a string
-• inclusion_tag: Processes the data and returns a rendered template
-• assignment_tag: Processes the data and sets a variable in the context
 
 # Django will use the function's name as the tag name. If you want to register it with a different name, you can do it by specifying a name attribute like @register.simple_tag(name='my_tag')
 
@@ -187,6 +187,38 @@
 
 #  DATE_FORMAT, DATETIME_FORMAT, SHORT_DATE_FORMAT or SHORT_DATETIME_FORMAT
 
+# Field lookups are how you specify the meat of an SQL WHERE clause. They’re specified as keyword arguments to the QuerySet methods filter(), exclude() and get().
+
+# Basic lookups keyword arguments take the form field__lookuptype=value. (That’s a double-underscore). For example:
+
+		Entry.objects.filter(pub_date__lte='2006-01-01')
+
+# from django.db.models import Q
+
+		Entry.objects.get(Q(name__startswith='e'), Q(pub__date="fjj") | Q(pub_date=date(2005, 5, 6))
+
+# Retrieve values as a dictionary
+	>>> Book.objects.values('title', 'author__name')
+	<QuerySet [{'author__name': u'Nikolai Gogol', 'title': u'The Overcoat'}, {'author__name': u'Leo Tolstoy', 'title': u'War and Peace'}]>
+
+# Retrive values as a tuple
+	>>> Book.objects.values_list('title', 'author__name')
+
+# With one value, It is easier to flatten the list
+	>>> Book.objects.values_list('title', flat=True)
+
+# What Django actually does is load all books into memory and then iterate through each one. We want Django to hold the SQL connection open and read each row 
+
+	>>> for book in Book.objects.all().iterator():
+			do_stuff_with(book)
+
+# Limiting QuerySets
+	
+	$ Entry.objects.all()(OFFSET 5 LIMIT 5)
+
+# Field Lookups => Field lookups are how you specify the meat of an SQL WHERE clause. 
+
+# Basic lookups keyword arguments take the form "field__lookuptype=value"
 
 
 
