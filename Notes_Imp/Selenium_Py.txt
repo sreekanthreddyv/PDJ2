@@ -4,3 +4,18 @@
 
 # The browser object provides a programmable interface to communicate with the browser using the Selenium commands.
 
+	@classmethod
+    def setUpClass(inst):
+        # create a new Firefox session
+        inst.driver = webdriver.Firefox()
+        inst.driver.implicitly_wait(30)
+        inst.driver.maximize_window()
+        # navigate to the application home page
+        inst.driver.get("http://www.google.com/")
+        inst.driver.title
+
+
+    @classmethod
+    def tearDownClass(inst):
+    	inst.driver.quit()
+
