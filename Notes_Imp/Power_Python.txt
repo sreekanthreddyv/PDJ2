@@ -379,7 +379,38 @@ name 		%(name)s 		The logger’s name
 	mi.distribute(2, lst) --> [[1, 3, 5, 7, 9], [2, 4, 6, 8]]
 
 
+**** __new__ ****
 
+# __new__ will execute before __init__
+
+	class Foo(object):
+
+		def __new__(cls, *args, **kwargs):
+			print("Creating Instance")
+			instance = super(Foo, cls).__new__(cls, *args, **kwargs)
+			return instance
+
+		def __init__(self, a, b):
+			self.a = a
+			self.b = b
+
+
+# Sample program to limit the instances
+
+	class LimitedInstances(object):
+	    _instances = []
+	    limit = 5
+	    
+	    def __new__(cls, *args, **kwargs):
+	        if len(cls._instances) >= 5:
+	            raise RuntimeError, "maximum instances reached"
+	        instance = super(LimitedInstances, cls).__new__(cls, *args, **kwargs)
+	        cls._instances.append(instance)
+	        return instance
+	        
+	    def __init__(self, a, b):
+	        self.a = a
+	        self.b = b
 
 
 

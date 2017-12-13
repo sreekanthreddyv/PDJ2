@@ -1,0 +1,37 @@
+# Modify column value
+
+	$ ALTER TABLE t1 MODIFY b INTEGER NOT NULL AUTO_INCREMENT;
+
+# Make a copy of the table with the data using INSERT SELECT:
+	$ CREATE TABLE backupTable LIKE originalTable; 
+	$ INSERT backupTable SELECT * FROM originalTable;
+
+# Delete data from originalTable (to remove duplicate entries):
+	$ TRUNCATE TABLE originalTable;
+
+# To add AUTO_INCREMENT and PRIMARY KEY
+	$ ALTER TABLE originalTable ADD id INT PRIMARY KEY AUTO_INCREMENT;
+
+# Copy data back to originalTable (do not include the newly created column (id), since it will be automatically populated)
+	$ INSERT originalTable (col1, col2, col3) 
+	  SELECT col1, col2,col3
+	  FROM backupTable;
+
+# Delete backupTable:
+	$ DROP TABLE backupTable;
+
+# list all databases
+	$ SHOW DATABASES;
+	$ USE <dbname>
+
+# list all tables in a db
+	$ SHOW TABLES;
+
+# list columns in a table;
+	$ DESCRIBE <TABLE NAME>;
+	$ SHOW COLUMNS FROM <TABLE NAME>;
+
+# get result set
+	$ cursor.fetchall()
+
+	

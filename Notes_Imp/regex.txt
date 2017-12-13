@@ -42,3 +42,28 @@ re.findall(r'\b[^aeiouAEIOU ]\w+', strg) -> start with vowels -> ['largest', 'co
 strg2 = 'asdf fjdk;afed,fjek,asdf,foo' # String has multiple delimiters (";",","," ")
 
 re.split(r'[;, \s], strg2)
+
+
+**** freecodecamp ****
+
+g = "abacgba"
+
+$ re.findall(r'a^(?!b)", g") # all 'a' which is not followed by 'b'
+
+# A combination of brackets, question mark and exclamation mark (?!), is called a look ahead. 
+
+# (?=) is a positive look ahead. 
+
+# ^ab*$ 
+	You may think this translates to 0 or more occurrences of ab, but it matches a followed by 0 or more b
+	For example: This matches abbb, aand ab, but does not match abab
+
+# ^(ab)*$ 
+	This matches 0 or more pairs of ab
+	That means it will match empty string "", aband abab, but not abb
+
+# a? 
+	? matches 0 or 1 occurrence of preceding character or pattern
+
+
+

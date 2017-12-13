@@ -220,7 +220,17 @@
 
 # Basic lookups keyword arguments take the form "field__lookuptype=value"
 
+# The name of the database table to use for the model:
 
+	class Meta:
+		db_table = "myTable"
+
+# order_with_respect_to
+
+	$ ./manage.py sqlmigrate <appname> 
+
+# db shell
+	$ ./manage.py dbshell
 
 
 
