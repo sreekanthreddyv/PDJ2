@@ -208,5 +208,9 @@
 	# Split the array vertically at the 3rd index
 		$ np.vsplit(c, 2)
 
+	aidalyn.alayla@arockee.com
+
+	hack1918
+
 	
 

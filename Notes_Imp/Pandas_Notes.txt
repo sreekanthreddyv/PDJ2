@@ -1,0 +1,38 @@
+# The Pandas library is built on NumPy and provides easy-to-use data structures and data analysis tools for the Python programming language.
+
+**** Pandas Data Structures ****
+
+# Series
+	# A one-dimensional labeled array capable of holding any data type.
+
+	$ s = pd.Series([3, -5, 7, 4], index=['a', 'b', 'c', 'd'])
+
+# DataFrame
+	# A two-dimensional labeled data structure with columns of potentially different types.
+
+		$ data = {'Country': ['Belgium', 'India', 'Brazil'],
+				 'Capital': ['Brussels', 'New Delhi', 'Brasília'],
+				 'Population': [11190846, 1303171035, 207847528]}
+
+		$ df = pd.DataFrame(data, columns=['Country', 'Capital', 'Population'])
+
+
+# Read and Write to CSV
+
+	$ pd.read_csv('file.csv', header=None, nrows=5)
+	$ pd.to_csv('myDataFrame.csv')
+
+# Read and Write to Excel
+
+	$ pd.read_excel('file.xlsx')
+	$ pd.to_excel('dir/myDataFrame.xlsx', sheet_name='Sheet1')
+
+# Read multiple sheets from the same file
+	
+	$ xlsx = pd.ExcelFile('file.xls')
+	$ df = pd.read_excel(xlsx, 'Sheet1')
+
+
+
+
+

@@ -233,6 +233,14 @@
 	$ ./manage.py dbshell
 
 
+***** REST API *****
+
+# Serializers are those components used to convert the received data from JSON format to the relative Django model and viceversa. 
+
+# In this case we are using a ModelSerializer. We need to create a new class from it, and specify the model attribute, that's it. In this case we also specify the fields we want to return.
+
+# The serializer alone is not able to respond to an API request, that's why we need to implement a view. 
+
 
 
 
