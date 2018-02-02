@@ -122,7 +122,7 @@ print(h.fullname)
 
 # The @property def fullname must come first.
 
-# That creates the property to begin with, and also creates the getter. By "create the property", I mean that an object named   fullname exists in the namespace of the class, and it has a method named fullname.setter. This fullname.setter is a decorator that is applied to the next def fullname, christening it as the setter for the fullname property.
+# That creates the property to begin with, and also creates the getter. By "create the property", I mean that an object named fullname exists in the namespace of the class, and it has a method named fullname.setter. This fullname.setter is a decorator that is applied to the next def fullname, christening it as the setter for the fullname property.
 
 # prefixing a member variable by a single underscore signals the variable is non-public, i.e. it should only be accessed internally, inside methods of that class, or its subclasses. [1] What this pattern says is "you can access this variable, but not change it".
 

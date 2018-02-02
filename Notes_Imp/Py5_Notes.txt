@@ -125,7 +125,75 @@ False
 	>>> title
 	'Meaning of Life'
 
-# 
+page Number ******** 221 to 471 *********
+
+
+*** Functions ***
+
+# function is a device that groups a set of statements so they can be run more than once in a program.
+
+# Two ways to make functions ( def and lambda )
+
+# Two ways to manage scope and visibility ( global and nonlocal )
+
+# Two ways to send results back to callers ( return and yield )
+
+# global declares module-level variables that are to be assigned. By default, all names assigned in a function are local to that function and exist only while the function runs. To assign a name in the enclosing module, functions need to list it in a global statement.
+
+# except E as X .Because they might defer garbage collection’s memory recovery,
+
+# in 3.X, such variables are local to that except block, and in fact are removed when the block is exited (even if you’ve used it earlier in your code!).
+
+# In 2.X, these variables live on after the try statement.
+
+# because the nonlocal statement (available in Python 3.X but not 2.X) means that the assignment to X inside the nested function changes X in the enclosing function’s local scope.
+
+	def func(a, b, c):
+		a=2
+		b[0]='x'
+		c['a'] = 'y'
+
+	l=1; m=[1]; n={'a':0}
+
+	func(l, m, n)
+
+	print(l, m, n) # 1, [x], {'a':'y'}
+
+# This displays (1, ['x'], {'a': 'y'}) —the first assignment in the function doesn’t impact the caller, but the second two do because they change passed-in mutable objects in place.
+
+>>> sys.getrecursionlimit() # 1000 calls deep default
+1000
+
+>>> sys.setrecursionlimit(10000) # Allow deeper nesting
+
+>>> func.__code__.co_varnames
+('a', 'b')
+>>> func.__code__.co_argcount
+1
+
+# lambda -> An expression form that generates function objects.
+
+	$ lambda argument1, argument2,... argumentN : expression using arguments
+
+# Unlike normal functions that return a value and exit, generator functions automatically suspend and resume their execution and state around the point of value generation. (592)
+
+**** Exam Questions ****
+
+1) Create a class Named "Account" with initial parameters (name, accnum, balance), and with four methods named (transfer, deposit, withdraw, display_balance). 
+
+2) What is inheritance? Where does an inheritance search look for an attribute? Write an example program?
+
+3) Why might a class need to manually call the __init__ method in a superclass? Write an example program?
+
+4) Create a class Named "FileOperation", with initial prameter is a file object. and methods are read_n_lines, read_lines_range,
+
+# Generator functions
+	A function def statement that contains a yield statement is turned into a generator function.
+
+# Generator expressions
+	A comprehension expression enclosed in parentheses is known as a generator expression.
+
+
 
 
 

@@ -1,0 +1,23 @@
+# The difference is, however, a package like TensorFlow allows us to perform specific machine learning number-crunching operations like derivatives on huge matricies with large efficiency.
+
+# We can also easily distribute this processing across our CPU cores, GPU cores, or even multiple devices like multiple GPUs.
+
+# We can even distribute computations across a distributed network of computers with TensorFlow. 
+
+	x1 = tf.constant(5)
+	x2 = tf.constant(6)
+
+	result = tf.nultiply(x1, x2)
+
+	# that the output is just an abstract tensor still. 
+	print(result) >> Tensor("Mul:0", shape=(), dtype=int32)
+
+	# To actually see the result, we need to run the session	
+	sess = tf.Session()
+	print(sess.run(result))
+
+	# you need to close it in order to free up the resources that were used:
+	sess.close()
+	
+
+
