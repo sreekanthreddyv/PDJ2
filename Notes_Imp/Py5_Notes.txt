@@ -179,13 +179,17 @@ page Number ******** 221 to 471 *********
 
 **** Exam Questions ****
 
-1) Create a class Named "Account" with initial parameters (name, accnum, balance), and with four methods named (transfer, deposit, withdraw, display_balance). 
+1) Write a Program Create a class Named "Account" with initial parameters (name, accnum, balance), and with four methods named (transfer_to_account, deposit, withdraw, display_balance). 
 
 2) What is inheritance? Where does an inheritance search look for an attribute? Write an example program?
 
 3) Why might a class need to manually call the __init__ method in a superclass? Write an example program?
 
 4) Create a class Named "FileOperation", with initial prameter is a file object. and methods are read_n_lines, read_lines_range,
+
+5) What is decorator in python? write a sample program for both function based and class based decorators?
+
+6) Explain django MVC architecture..? Write the all steps from djagno installtion to starting a new project..?
 
 # Generator functions
 	A function def statement that contains a yield statement is turned into a generator function.
