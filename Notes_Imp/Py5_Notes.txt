@@ -177,29 +177,56 @@ page Number ******** 221 to 471 *********
 
 # Unlike normal functions that return a value and exit, generator functions automatically suspend and resume their execution and state around the point of value generation. (592)
 
-**** Exam Questions ****
-
-1) Write a Program Create a class Named "Account" with initial parameters (name, accnum, balance), and with four methods named (transfer_to_account, deposit, withdraw, display_balance). 
-
-2) What is inheritance? Where does an inheritance search look for an attribute? Write an example program?
-
-3) Why might a class need to manually call the __init__ method in a superclass? Write an example program?
-
-4) Create a class Named "FileOperation", with initial prameter is a file object. and methods are read_n_lines, read_lines_range,
-
-5) What is decorator in python? write a sample program for both function based and class based decorators?
-
-6) Explain django MVC architecture..? Write the all steps from djagno installtion to starting a new project..?
-
 # Generator functions
 	A function def statement that contains a yield statement is turned into a generator function.
 
 # Generator expressions
 	A comprehension expression enclosed in parentheses is known as a generator expression.
 
+# Import enclosing module, Qualify to get to global version of name
 
+	x = 99
+	def selector():
+		import __main__
+		print(__main__.x)
+		x = 88
+		print(x)
 
+	selector()
+	print(x)
 
+# mutable default arguments retain their state between function calls,
+
+	def saver(x=[]):
+		x.append(1)
+		print(x)
+
+	saver() # [1] # grows on each call
+	saver() # [1, 1]
+	saver() # [1, 1, 1]
+
+# Won't grow here
+
+	def saver(x=None):
+		if x is None: # x = x or []
+			x = []
+		x.append(1)
+		print(x)
+
+***** Modules & Packages *****
+
+# import
+	Lets a client (importer) fetch a module as a whole
+
+# from
+	Allows clients to fetch particular names from a module
+
+# imp.reload ( reload in 2.X)
+	Provides a way to reload a module’s code without stopping Python
+
+# As the import is executing: import literally runs statements in the target file one at a time to create its contents.
+
+# 
 
 
 
