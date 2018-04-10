@@ -1,6 +1,8 @@
 from paramiko import SSHClient, AutoAddPolicy
 from scp import SCPClient
+#import pdb
 
+#pdb.set_trace()
 ssh_client = SSHClient()
 ssh_client.load_system_host_keys()
 ssh_client.set_missing_host_key_policy(AutoAddPolicy())
