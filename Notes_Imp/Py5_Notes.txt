@@ -228,7 +228,71 @@ page Number ******** 221 to 471 *********
 
 # The top-level (a.k.a. script) file contains the main flow of control of your program—this is the file you run to launch your application.
 
+	$ from small import x
+	$ x = 7	# Changes x local only
 
+# callable(<func name>)
+	True
+
+# hasattr(<func name>, '__call__')
+
+# By default, a module is imported only once per process. The reload function forces a module to be imported again. It is mostly used to pick up new versions of a module’s source code during development, and in dynamic customization scenarios.
+
+# A directory of Python code is said to be a package, so such imports are known as package imports. In effect, a package import turns a directory on your computer into another Python namespace, with attributes corresponding to the subdirectories and module files that the directory contains.
+
+# Data Hiding in Modules
+	
+	# unders.py
+	$ a, _b, c, _d = 1, 2, 3, 4
+
+	$ from unders import *
+	_b
+	NameError: name '_b' is not defined
+
+	$ import unders
+	unders._b >> 2
+
+# Alternatively, you can achieve a hiding effect similar to the _X naming convention by assigning a list of variable name strings to the variable __all__ at the top level of the module.
+
+# When this feature is used, the from * statement will copy out only those names listed in the __all__ list.
+
+	# alls.py
+	__all__ = ['a', '_c']
+
+	a, b, _c, d = 1, 2, 3, 4
+
+# The __all__ list has meaning only to the from * statement form and does not amount to a privacy declaration: other import statements can still access all names.
+
+	import alls
+	alls.a, alls.b, alls._c
+
+# __name__ and __main__
+
+	if __name__ == '__main__':	# Only when run
+		tester()				# Not when imported
+
+	modname = 'string'
+	>>> exec('import ' + modname)	# Run a string of code
+
+# Direct Calls: Two Options
+
+	$ fun = __import__('module')
+
+	$ import importlib
+	$ fun = importlib.import_module('module')
+
+# Code inside a function body doesn’t run until the function is called; because names in a function aren’t resolved until the function actually runs,
+
+# If a module’s __name__ variable is the string "__main__" , it means that the file is being executed as a top-level script instead of being imported from another file in the program. That is, the file is being used as a program, not a library. This usage mode variable supports dual-mode code and tests.
+
+**** OOP's ****
+
+bob.giveRaise()
+Employee.giveRaise(bob)
+
+# instance.__class__
+
+# instance.__class__.__name__
 
 
 

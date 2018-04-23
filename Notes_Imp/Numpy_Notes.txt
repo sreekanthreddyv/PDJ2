@@ -212,5 +212,7 @@
 
 	hack1918
 
+# x = np.random.choice([False, True], size=100000)
+
 	
 
