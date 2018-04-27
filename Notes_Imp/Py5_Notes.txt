@@ -294,6 +294,22 @@ Employee.giveRaise(bob)
 
 # instance.__class__.__name__
 
+# To use slots, assign a sequence of string names to the special __slots__ variable and attribute at the top level of a class statement: only those names in the __slots__ list can be assigned as instance attributes.
+
+# Bullet 1: slots in sub but not super
+# Makes instance dict for nonslots
+# But slot name still managed in class
+
+# Bullet 2: slots in super but not sub
+# Makes instance dict for nonslots
+# But slot name still managed in class
+
+$ class C: __slots__ = ['a']; a = 99 # Bullet 4: no class-level defaults
+
+# ValueError: 'a' in __slots__ conflicts with class variable (py3 only)
+
+# min(timeit.repeat(stmt, number=1000, repeat=3))
+
 
 
 
